@@ -1,2 +1,3 @@
 # Development of Group 6
-![GitHub Workflow Status (branch)](https://img.shields.io/github/workflow/status/PhonePyaePhyoee/DevOpGp6/<action name taken from main.yml>/<branch>?style=flat-square)
+
+Develop build status ![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/eau-dae-raie-A/Dev-Ops-Group-1-/main.yml?branch=develop&style=flat-square)
