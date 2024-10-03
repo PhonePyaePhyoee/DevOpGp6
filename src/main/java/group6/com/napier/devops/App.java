@@ -53,6 +53,8 @@ public class App {
                 generateTopNPopulatedCountriesByRegion(con, regionForTopN, topNInRegion);
 
 
+
+
                 // Exit for loop
                 break;
             } catch (SQLException sqle) {
@@ -122,6 +124,12 @@ public class App {
         return defaultTopN;
     }
 
+
+
+
+
+
+
     // Query 1: All countries in the world ordered by population (with city name for capital)
     public static void generateCountryReport(Connection con) {
         try {
@@ -132,7 +140,7 @@ public class App {
                     + "ORDER BY country.Population DESC";
             ResultSet rs = stmt.executeQuery(query);
 
-            System.out.println("Country Report (All Countries by Population):");
+            System.out.println("No.1 Country Report (All Countries by Population):");
             System.out.println(String.format("%-5s | %-40s | %-15s | %-25s | %-15s | %-20s", "Code", "Name", "Continent", "Region", "Population", "Capital"));
             System.out.println("-----------------------------------------------------------------------------------------------------------------------------");
 
@@ -166,7 +174,7 @@ public class App {
                     + "ORDER BY country.Population DESC";
             ResultSet rs = stmt.executeQuery(query);
 
-            System.out.println("\nCountry Report (Countries in " + continent + " by Population):");
+            System.out.println("\nNo .2 Country Report (Countries in " + continent + " by Population):");
             System.out.println(String.format("%-5s | %-40s | %-15s | %-25s | %-15s | %-20s", "Code", "Name", "Continent", "Region", "Population", "Capital"));
             System.out.println("-----------------------------------------------------------------------------------------------------------------------------");
 
@@ -199,7 +207,7 @@ public class App {
                     + "ORDER BY country.Population DESC";
             ResultSet rs = stmt.executeQuery(query);
 
-            System.out.println("\nCountry Report (Countries in " + region + " by Population):");
+            System.out.println("\n No. 3 Country Report (Countries in " + region + " by Population):");
             System.out.println(String.format("%-5s | %-40s | %-15s | %-25s | %-15s | %-20s", "Code", "Name", "Continent", "Region", "Population", "Capital"));
             System.out.println("-----------------------------------------------------------------------------------------------------------------------------");
 
@@ -232,7 +240,7 @@ public class App {
                     + "LIMIT " + N;
             ResultSet rs = stmt.executeQuery(query);
 
-            System.out.println("\nTop " + N + " Populated Countries in the World:");
+            System.out.println("\n No. 4 Top " + N + " Populated Countries in the World:");
             System.out.println(String.format("%-5s | %-40s | %-15s | %-25s | %-15s | %-30s", "Code", "Country", "Continent", "Region", "Population", "Capital"));
             System.out.println("--------------------------------------------------------------------------------------------------------------------");
 
@@ -269,7 +277,7 @@ public class App {
                     + "LIMIT " + N;
             ResultSet rs = stmt.executeQuery(query);
 
-            System.out.println("\nTop " + N + " Populated Countries in " + continent + ":");
+            System.out.println("\n No. 5 Top " + N + " Populated Countries in " + continent + ":");
             System.out.println(String.format("%-5s | %-40s | %-15s | %-25s | %-15s | %-30s", "Code", "Country", "Continent", "Region", "Population", "Capital"));
             System.out.println("--------------------------------------------------------------------------------------------------------------------");
 
@@ -304,7 +312,7 @@ public class App {
                     + "LIMIT " + N;
             ResultSet rs = stmt.executeQuery(query);
 
-            System.out.println("\nTop " + N + " Populated Countries in " + region + ":");
+            System.out.println("\n No. 6 Top " + N + " Populated Countries in " + region + ":");
             System.out.println(String.format("%-5s | %-40s | %-15s | %-25s | %-15s | %-30s", "Code", "Country", "Continent", "Region", "Population", "Capital"));
             System.out.println("--------------------------------------------------------------------------------------------------------------------");
 
@@ -326,7 +334,6 @@ public class App {
             e.printStackTrace();
         }
     }
-
 
 
 }
