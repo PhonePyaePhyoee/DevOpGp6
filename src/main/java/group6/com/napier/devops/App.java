@@ -52,6 +52,11 @@ public class App {
                 int topNInRegion = getTopNFromInput();
                 generateTopNPopulatedCountriesByRegion(con, regionForTopN, topNInRegion);
 
+                generateCityReport(con);
+                // Get all cities in a continent ordered by population (Query 8)
+                String continentForCities = getContinentFromInput();
+                generateCityReportByContinent(con, continentForCities);
+
 
 
 
@@ -331,6 +336,70 @@ public class App {
             rs.close();
         } catch (SQLException e) {
             System.out.println("Error retrieving top N populated countries data for the region.");
+            e.printStackTrace();
+        }
+    }
+    // Query 7: All the cities in the world organized by largest population to smallest
+    public static void generateCityReport(Connection con) {
+        try {
+            Statement stmt = con.createStatement();
+            String query = "SELECT city.ID, city.Name, country.Name AS CountryName, city.District, city.Population " +
+                    "FROM city " +
+                    "JOIN country ON city.CountryCode = country.Code " + // Join to get country names
+                    "ORDER BY city.Population DESC"; // Order by population from largest to smallest
+            ResultSet rs = stmt.executeQuery(query);
+
+            System.out.println("\n No. 7 City Report (All Cities by Population):");
+            System.out.println(String.format("%-10s | %-40s | %-40s | %-25s | %-15s", "City ID", "City Name", "Country Name", "District", "Population"));
+            System.out.println("-----------------------------------------------------------------------------------------------------------------------------");
+
+            NumberFormat numberFormat = NumberFormat.getInstance();
+            while (rs.next()) {
+                int cityID = rs.getInt("ID");
+                String cityName = rs.getString("Name");
+                String countryName = rs.getString("CountryName");
+                String district = rs.getString("District");
+                int population = rs.getInt("Population");
+                String populationFormatted = numberFormat.format(population); // Format population
+
+                System.out.println(String.format("%-10s | %-40s | %-40s | %-25s | %-15s", cityID, cityName, countryName, district, populationFormatted));
+            }
+            rs.close();
+        } catch (SQLException e) {
+            System.out.println("Error retrieving city data.");
+            e.printStackTrace();
+        }
+    }
+
+    // Query 8: All the cities in a continent organized by largest population to smallest
+    public static void generateCityReportByContinent(Connection con, String continent) {
+        try {
+            Statement stmt = con.createStatement();
+            String query = "SELECT city.ID, city.Name, country.Name AS CountryName, city.District, city.Population " +
+                    "FROM city " +
+                    "JOIN country ON city.CountryCode = country.Code " +  // Join to get country names
+                    "WHERE country.Continent = '" + continent + "' " +  // Filter by continent
+                    "ORDER BY city.Population DESC";  // Order by population from largest to smallest
+            ResultSet rs = stmt.executeQuery(query);
+
+            System.out.println("\n No. 8 City Report (All Cities in " + continent + " by Population):");
+            System.out.println(String.format("%-10s | %-40s | %-40s | %-25s | %-15s", "City ID", "City Name", "Country Name", "District", "Population"));
+            System.out.println("-----------------------------------------------------------------------------------------------------------------------------");
+
+            NumberFormat numberFormat = NumberFormat.getInstance();
+            while (rs.next()) {
+                int cityID = rs.getInt("ID");
+                String cityName = rs.getString("Name");
+                String countryName = rs.getString("CountryName");
+                String district = rs.getString("District");
+                int population = rs.getInt("Population");
+                String populationFormatted = numberFormat.format(population); // Format population
+
+                System.out.println(String.format("%-10s | %-40s | %-40s | %-25s | %-15s", cityID, cityName, countryName, district, populationFormatted));
+            }
+            rs.close();
+        } catch (SQLException e) {
+            System.out.println("Error retrieving city data for the continent.");
             e.printStackTrace();
         }
     }
