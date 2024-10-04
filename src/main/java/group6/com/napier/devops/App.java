@@ -57,8 +57,13 @@ public class App {
                 String continentForCities = getContinentFromInput();
                 generateCityReportByContinent(con, continentForCities);
 
+                // Get all cities in a region ordered by population (Query 9)
+                String regionForCities = getRegionFromInput();
+                generateCityReportByRegion(con, regionForCities);
 
-
+// Get          //all cities in a country ordered by population (Query 10)
+                String countryForCities = getCountryFromInput();
+                generateCityReportByCountry(con, countryForCities);
 
                 // Exit for loop
                 break;
@@ -129,11 +134,20 @@ public class App {
         return defaultTopN;
     }
 
+    public static String getCountryFromInput() throws NoSuchElementException {
+        String defaultCountry = "China";  // Set default country
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Enter the country name for the report (default: China): ");
 
-
-
-
-
+        if (scanner.hasNextLine()) {
+            String input = scanner.nextLine();
+            if (input != null && !input.trim().isEmpty()) {
+                return input.trim();
+            }
+        }
+        System.out.println("No input provided. Using default country: " + defaultCountry);
+        return defaultCountry;
+    }
 
     // Query 1: All countries in the world ordered by population (with city name for capital)
     public static void generateCountryReport(Connection con) {
@@ -404,6 +418,69 @@ public class App {
         }
     }
 
+    // Query 9: All the cities in a region organized by largest population to smallest
+    public static void generateCityReportByRegion(Connection con, String region) {
+        try {
+            Statement stmt = con.createStatement();
+            String query = "SELECT city.ID, city.Name, country.Name AS CountryName, city.District, city.Population " +
+                    "FROM city " +
+                    "JOIN country ON city.CountryCode = country.Code " +  // Join to get country names
+                    "WHERE country.Region = '" + region + "' " +  // Filter by region
+                    "ORDER BY city.Population DESC";  // Order by population from largest to smallest
+            ResultSet rs = stmt.executeQuery(query);
 
+            System.out.println("\n No. 9 City Report (All Cities in " + region + " by Population):");
+            System.out.println(String.format("%-10s | %-40s | %-40s | %-25s | %-15s", "City ID", "City Name", "Country Name", "District", "Population"));
+            System.out.println("-----------------------------------------------------------------------------------------------------------------------------");
+
+            NumberFormat numberFormat = NumberFormat.getInstance();
+            while (rs.next()) {
+                int cityID = rs.getInt("ID");
+                String cityName = rs.getString("Name");
+                String countryName = rs.getString("CountryName");
+                String district = rs.getString("District");
+                int population = rs.getInt("Population");
+                String populationFormatted = numberFormat.format(population);  // Format population
+
+                System.out.println(String.format("%-10s | %-40s | %-40s | %-25s | %-15s", cityID, cityName, countryName, district, populationFormatted));
+            }
+            rs.close();
+        } catch (SQLException e) {
+            System.out.println("Error retrieving city data for the region.");
+            e.printStackTrace();
+        }
+    }
+    // Query 10: All the cities in a country organized by largest population to smallest
+    public static void generateCityReportByCountry(Connection con, String countryName) {
+        try {
+            Statement stmt = con.createStatement();
+            String query = "SELECT city.ID, city.Name, country.Name AS CountryName, city.District, city.Population " +
+                    "FROM city " +
+                    "JOIN country ON city.CountryCode = country.Code " +  // Join to get country names
+                    "WHERE country.Name = '" + countryName + "' " +  // Filter by country name
+                    "ORDER BY city.Population DESC";  // Order by population from largest to smallest
+            ResultSet rs = stmt.executeQuery(query);
+
+            System.out.println("\n No. 10 City Report (All Cities in " + countryName + " by Population):");
+            System.out.println(String.format("%-10s | %-40s | %-40s | %-25s | %-15s", "City ID", "City Name", "Country Name", "District", "Population"));
+            System.out.println("-----------------------------------------------------------------------------------------------------------------------------");
+
+            NumberFormat numberFormat = NumberFormat.getInstance();
+            while (rs.next()) {
+                int cityID = rs.getInt("ID");
+                String cityName = rs.getString("Name");
+                String country = rs.getString("CountryName");
+                String district = rs.getString("District");
+                int population = rs.getInt("Population");
+                String populationFormatted = numberFormat.format(population);  // Format population
+
+                System.out.println(String.format("%-10s | %-40s | %-40s | %-25s | %-15s", cityID, cityName, country, district, populationFormatted));
+            }
+            rs.close();
+        } catch (SQLException e) {
+            System.out.println("Error retrieving city data for the country.");
+            e.printStackTrace();
+        }
+    }
 }
 
