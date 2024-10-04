@@ -464,9 +464,9 @@ public class App {
             Statement stmt = con.createStatement();
             String query = "SELECT city.ID, city.Name, country.Name AS CountryName, city.District, city.Population " +
                     "FROM city " +
-                    "JOIN country ON city.CountryCode = country.Code " +  // Join to get country names
-                    "WHERE country.Region = '" + region + "' " +  // Filter by region
-                    "ORDER BY city.Population DESC";  // Order by population from largest to smallest
+                    "JOIN country ON city.CountryCode = country.Code " +
+                    "WHERE country.Region = '" + region + "' " +
+                    "ORDER BY city.Population DESC";
             ResultSet rs = stmt.executeQuery(query);
 
             System.out.println("\n No. 9 City Report (All Cities in " + region + " by Population):");
