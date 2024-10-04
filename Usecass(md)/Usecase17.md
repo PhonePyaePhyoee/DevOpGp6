@@ -19,7 +19,7 @@ A complete and accurate list of capital cities, sorted by population from larges
 No data is retrieved, or the list is incomplete or incorrectly ordered.
 
 ## Primary Actor
-Data Analyst.
+Data Analyst.(Host)
 
 ## Trigger
 The data analyst requests population data for capital cities globally.
