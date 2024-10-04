@@ -1,6 +1,6 @@
 FROM openjdk:17
 
-COPY ./target/DevOpsnew-0.1.0.2-jar-with-dependencies.jar ./temp/
+COPY ./target/classes/group6 ./temp/group6
 WORKDIR ./temp
-ENTRYPOINT ["java", "-jar", "DevOpsnew-0.1.0.2-jar-with-dependencies.jar"]
-#r
+
+ENTRYPOINT ["java","group6.Main"]
