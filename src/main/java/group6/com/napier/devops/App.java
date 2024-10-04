@@ -65,6 +65,14 @@ public class App {
                 String countryForCities = getCountryFromInput();
                 generateCityReportByCountry(con, countryForCities);
 
+                // Call the new method to get the district with a default value
+                String district = getDistrictFromInput();
+                generateCityReportByDistrict(con, district);
+
+                int topNCities = getTopNPopulatedCitiesInput(); // Get top N populated cities with default value
+                generateTopNPopulatedCities(con, topNCities);
+
+
                 // Exit for loop
                 break;
             } catch (SQLException sqle) {
@@ -147,6 +155,38 @@ public class App {
         }
         System.out.println("No input provided. Using default country: " + defaultCountry);
         return defaultCountry;
+    }
+    public static String getDistrictFromInput() throws NoSuchElementException {
+        String defaultDistrict = "Shandong";  // Set default district
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Enter the district name for the report (default: Central District): ");
+
+        if (scanner.hasNextLine()) {
+            String input = scanner.nextLine();
+            if (input != null && !input.trim().isEmpty()) {
+                return input.trim();
+            }
+        }
+        System.out.println("No input provided. Using default district: " + defaultDistrict);
+        return defaultDistrict;
+    }
+
+    public static int getTopNPopulatedCitiesInput() throws NoSuchElementException {
+        int defaultTopN = 5;  // Set default value for top N cities
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Enter the number of top populated cities to retrieve (default: 5): ");
+
+        if (scanner.hasNextLine()) {
+            String input = scanner.nextLine();
+            try {
+                int topN = Integer.parseInt(input.trim());
+                return topN;
+            } catch (NumberFormatException e) {
+                System.out.println("Invalid input. Using default value: " + defaultTopN);
+            }
+        }
+        System.out.println("No input provided. Using default value: " + defaultTopN);
+        return defaultTopN;
     }
 
     // Query 1: All countries in the world ordered by population (with city name for capital)
@@ -479,6 +519,71 @@ public class App {
             rs.close();
         } catch (SQLException e) {
             System.out.println("Error retrieving city data for the country.");
+            e.printStackTrace();
+        }
+    }
+    // Query 11: All the cities in a district organized by largest population to smallest
+    public static void generateCityReportByDistrict(Connection con, String district) {
+        try {
+            Statement stmt = con.createStatement();
+            String query = "SELECT city.ID, city.Name, country.Name AS CountryName, city.District, city.Population " +
+                    "FROM city " +
+                    "JOIN country ON city.CountryCode = country.Code " +  // Join to get country names
+                    "WHERE city.District = '" + district + "' " +  // Filter by district
+                    "ORDER BY city.Population DESC";  // Order by population from largest to smallest
+            ResultSet rs = stmt.executeQuery(query);
+
+            System.out.println("\n No. 11 City Report (All Cities in " + district + " District by Population):");
+            System.out.println(String.format("%-10s | %-40s | %-40s | %-25s | %-15s", "City ID", "City Name", "Country Name", "District", "Population"));
+            System.out.println("-----------------------------------------------------------------------------------------------------------------------------");
+
+            NumberFormat numberFormat = NumberFormat.getInstance();
+            while (rs.next()) {
+                int cityID = rs.getInt("ID");
+                String cityName = rs.getString("Name");
+                String countryName = rs.getString("CountryName");
+                String districtName = rs.getString("District");
+                int population = rs.getInt("Population");
+                String populationFormatted = numberFormat.format(population);  // Format population
+
+                System.out.println(String.format("%-10s | %-40s | %-40s | %-25s | %-15s", cityID, cityName, countryName, districtName, populationFormatted));
+            }
+            rs.close();
+        } catch (SQLException e) {
+            System.out.println("Error retrieving city data for the district.");
+            e.printStackTrace();
+        }
+    }
+
+    // Query 12: The top N populated cities in the world where N is provided by the user
+    public static void generateTopNPopulatedCities(Connection con, int N) {
+        try {
+            Statement stmt = con.createStatement();
+            String query = "SELECT city.ID, city.Name, country.Name AS CountryName, city.District, city.Population " +
+                    "FROM city " +
+                    "JOIN country ON city.CountryCode = country.Code " +  // Join to get country names
+                    "ORDER BY city.Population DESC " +  // Order by population from largest to smallest
+                    "LIMIT " + N;  // Limit the result set to N cities
+            ResultSet rs = stmt.executeQuery(query);
+
+            System.out.println("\n No. 12 Top " + N + " Populated Cities in the World:");
+            System.out.println(String.format("%-10s | %-40s | %-40s | %-25s | %-15s", "City ID", "City Name", "Country Name", "District", "Population"));
+            System.out.println("-----------------------------------------------------------------------------------------------------------------------------");
+
+            NumberFormat numberFormat = NumberFormat.getInstance();
+            while (rs.next()) {
+                int cityID = rs.getInt("ID");
+                String cityName = rs.getString("Name");
+                String countryName = rs.getString("CountryName");
+                String district = rs.getString("District");
+                int population = rs.getInt("Population");
+                String populationFormatted = numberFormat.format(population);  // Format population
+
+                System.out.println(String.format("%-10s | %-40s | %-40s | %-25s | %-15s", cityID, cityName, countryName, district, populationFormatted));
+            }
+            rs.close();
+        } catch (SQLException e) {
+            System.out.println("Error retrieving top N populated cities data.");
             e.printStackTrace();
         }
     }
