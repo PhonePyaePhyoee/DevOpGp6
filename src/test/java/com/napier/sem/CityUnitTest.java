@@ -137,22 +137,38 @@ public class CityUnitTest {
     @Test
     public void testGetTopNPopulatedCitiesInContinent() throws SQLException {
         // Setup mock ResultSet to return sample data
-        when(mockResultSet.next()).thenReturn(true, true, false); // three rows
-        when(mockResultSet.getInt("ID")).thenReturn(1, 2);
-        when(mockResultSet.getString("Name")).thenReturn("City1", "City2");
-        when(mockResultSet.getString("CountryName")).thenReturn("Country1", "Country2");
-        when(mockResultSet.getString("District")).thenReturn("District1", "District2");
-        when(mockResultSet.getInt("Population")).thenReturn(1000000, 2000000);
+        when(mockResultSet.next()).thenReturn(true, true, true, true, true, false); // Simulate five rows, then no more rows
+        when(mockResultSet.getInt("ID")).thenReturn(1, 2, 3, 4, 5);
+        when(mockResultSet.getString("Name")).thenReturn("City1", "City2", "City3", "City4", "City5");
+        when(mockResultSet.getString("CountryName")).thenReturn("Country1", "Country2", "Country3", "Country4", "Country5");
+        when(mockResultSet.getString("District")).thenReturn("District1", "District2", "District3", "District4", "District5");
+        when(mockResultSet.getInt("Population")).thenReturn(1000000, 2000000, 3000000, 4000000, 5000000);
+
+        // Setup mock Statement to return the mock ResultSet
+        when(mockStatement.executeQuery(anyString())).thenReturn(mockResultSet);
+
+        // Setup mock Connection to return the mock Statement
+        when(mockConnection.createStatement()).thenReturn(mockStatement);
 
         // Call the method under test
         List<City> result = cityQuery.getTopNPopulatedCitiesInContinent(mockConnection);
 
         // Assertions
-        assertEquals(2, result.size());
+        assertEquals(5, result.size());  // Expecting 5 cities
         assertEquals("City1", result.get(0).getName());
         assertEquals(1000000, result.get(0).getPopulation());
         assertEquals("City2", result.get(1).getName());
         assertEquals(2000000, result.get(1).getPopulation());
+        assertEquals("City3", result.get(2).getName());
+        assertEquals(3000000, result.get(2).getPopulation());
+        assertEquals("City4", result.get(3).getName());
+        assertEquals(4000000, result.get(3).getPopulation());
+        assertEquals("City5", result.get(4).getName());
+        assertEquals(5000000, result.get(4).getPopulation());
     }
 
+
 }
+
+
+
