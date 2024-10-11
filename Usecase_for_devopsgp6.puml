@@ -1,7 +1,7 @@
 @startuml
-left to right direction
+   left to right direction
 
-actor User as "Data Analysis"
+actor User as "User"
 
 rectangle "World Population" {
    usecase UC1 as "show all countries in the world by largest population to smallest"
