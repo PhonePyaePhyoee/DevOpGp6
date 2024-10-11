@@ -68,6 +68,7 @@ public class App {
             }
         } catch (SQLException e) {
             System.out.println("Error fetching countries: " + e.getMessage());
+
         }
         try {
             String continent = "Asia";  // Example continent; can be dynamic based on user input
@@ -261,5 +262,8 @@ public class App {
 
 
         app.disconnect();     // Disconnect from the database
+    }
+    public void display() {
+
     }
 }

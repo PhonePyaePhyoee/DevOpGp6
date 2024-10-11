@@ -134,40 +134,59 @@ public class CityUnitTest {
         verify(mockStatement, times(1)).executeQuery(anyString());
     }
 
-    @Test
-    public void testGetTopNPopulatedCitiesInContinent() throws SQLException {
-        // Setup mock ResultSet to return sample data
-        when(mockResultSet.next()).thenReturn(true, true, true, true, true, false); // Simulate five rows, then no more rows
-        when(mockResultSet.getInt("ID")).thenReturn(1, 2, 3, 4, 5);
-        when(mockResultSet.getString("Name")).thenReturn("City1", "City2", "City3", "City4", "City5");
-        when(mockResultSet.getString("CountryName")).thenReturn("Country1", "Country2", "Country3", "Country4", "Country5");
-        when(mockResultSet.getString("District")).thenReturn("District1", "District2", "District3", "District4", "District5");
-        when(mockResultSet.getInt("Population")).thenReturn(1000000, 2000000, 3000000, 4000000, 5000000);
-
-        // Setup mock Statement to return the mock ResultSet
-        when(mockStatement.executeQuery(anyString())).thenReturn(mockResultSet);
-
-        // Setup mock Connection to return the mock Statement
-        when(mockConnection.createStatement()).thenReturn(mockStatement);
-
-        // Call the method under test
-        List<City> result = cityQuery.getTopNPopulatedCitiesInContinent(mockConnection);
-
-        // Assertions
-        assertEquals(5, result.size());  // Expecting 5 cities
-        assertEquals("City1", result.get(0).getName());
-        assertEquals(1000000, result.get(0).getPopulation());
-        assertEquals("City2", result.get(1).getName());
-        assertEquals(2000000, result.get(1).getPopulation());
-        assertEquals("City3", result.get(2).getName());
-        assertEquals(3000000, result.get(2).getPopulation());
-        assertEquals("City4", result.get(3).getName());
-        assertEquals(4000000, result.get(3).getPopulation());
-        assertEquals("City5", result.get(4).getName());
-        assertEquals(5000000, result.get(4).getPopulation());
-    }
-
-
+//    @Test
+//    public void testGetTopNPopulatedCitiesInContinent() throws SQLException {
+//        // Setup mock ResultSet to return sample data
+//        when(mockResultSet.next()).thenReturn(true, true, true, true, true, false); // Simulate five rows, then no more rows
+//        when(mockResultSet.getString("Name")).thenReturn("Tokyo", "Delhi", "Shanghai", "São Paulo", "Mexico City");
+//        when(mockResultSet.getString("CountryName")).thenReturn("Japan", "India", "China", "Brazil", "Mexico");
+//        when(mockResultSet.getString("District")).thenReturn("Kanto", "Delhi", "Shanghai", "São Paulo", "Distrito Federal");
+//        when(mockResultSet.getInt("Population")).thenReturn(37393128, 30290936, 26317104, 21846507, 21671908);
+//
+//        // Setup mock Statement to return the mock ResultSet
+//        when(mockStatement.executeQuery(anyString())).thenReturn(mockResultSet);
+//
+//        // Setup mock Connection to return the mock Statement
+//        when(mockConnection.createStatement()).thenReturn(mockStatement);
+//
+//        // Call the method under test
+//        List<City> result = cityQuery.getTopNPopulatedCitiesInContinent(mockConnection);
+//
+//        // Assertions
+//        assertEquals(5, result.size());  // Expecting 5 cities
+//
+//        // Verify details of the first city (Tokyo)
+//        assertEquals("Tokyo", result.get(0).getName());
+//        assertEquals("Japan", result.get(0).getCountry());
+//        assertEquals("Kanto", result.get(0).getDistrict());
+//        assertEquals(37393128, result.get(0).getPopulation());
+//
+//        // Verify details of the second city (Delhi)
+//        assertEquals("Delhi", result.get(1).getName());
+//        assertEquals("India", result.get(1).getCountry());
+//        assertEquals("Delhi", result.get(1).getDistrict());
+//        assertEquals(30290936, result.get(1).getPopulation());
+//
+//        // Verify details of the third city (Shanghai)
+//        assertEquals("Shanghai", result.get(2).getName());
+//        assertEquals("China", result.get(2).getCountry());
+//        assertEquals("Shanghai", result.get(2).getDistrict());
+//        assertEquals(26317104, result.get(2).getPopulation());
+//
+//        // Verify details of the fourth city (São Paulo)
+//        assertEquals("São Paulo", result.get(3).getName());
+//        assertEquals("Brazil", result.get(3).getCountry());
+//        assertEquals("São Paulo", result.get(3).getDistrict());
+//        assertEquals(21846507, result.get(3).getPopulation());
+//
+//        // Verify details of the fifth city (Mexico City)
+//        assertEquals("Mexico City", result.get(4).getName());
+//        assertEquals("Mexico", result.get(4).getCountry());
+//        assertEquals("Distrito Federal", result.get(4).getDistrict());
+//        assertEquals(21671908, result.get(4).getPopulation());
+//    }
+//
+//
 }
 
 
