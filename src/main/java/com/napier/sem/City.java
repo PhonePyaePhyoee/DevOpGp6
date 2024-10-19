@@ -2,7 +2,9 @@ package com.napier.sem;
 
 public class City {
     private String name, country,district;
-    private int population;
+    private long population;
+
+
     public City(String name, String country, String district, int population) {
         this.name = name;
         this.country = country;
@@ -10,21 +12,8 @@ public class City {
         this.population = population;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
 
-    public void setCountry(String country) {
-        this.country = country;
-    }
 
-    public void setDistrict(String district) {
-        this.district = district;
-    }
-
-    public void setPopulation(int population) {
-        this.population = population;
-    }
 
     public String getName() {
         return name;
@@ -35,7 +24,7 @@ public class City {
     public String getDistrict() {
         return district;
     }
-    public int getPopulation() {
+    public long getPopulation() {
         return population;
     }
 }

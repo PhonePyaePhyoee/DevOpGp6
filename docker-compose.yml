@@ -7,7 +7,6 @@ services:
   # db is is db folder
   db:
     build: db/.
-
     restart: always
     ports:
       - "33060:3306"

@@ -18,14 +18,7 @@ public class Country {
         Population = population;
     }
 
-    public Country(String us, String unitedStates, int i, String name, String continent, String region, String capital, int population) {
-        Code = us;
-        Name = name;
-        Continent = continent;
-        Region = region;
-        Capital = capital;
-        Population = population;
-    }
+
 
 
 
