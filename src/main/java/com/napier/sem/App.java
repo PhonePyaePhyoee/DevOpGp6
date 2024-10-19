@@ -83,12 +83,12 @@ public class App {
             List<Country> countries3 = countryQuery.getTopNPopulatedCountriesInWorld(app.con, 5);
             countryQuery.displayTopNPopulatedCountriesInWorld(countries3, 5);
 
-//            List<Country> countries4 = countryQuery.getTopNPopulatedCountriesInContinent(app.con, "Asia", 5);
-//            countryQuery.displayTopNPopulatedCountriesInContinent(countries4, "Asia", 5);
-//
-//            List<Country> countries5 = countryQuery.getTopNPopulatedCountriesInRegion(app.con, "Western Africa", 5);
-//            countryQuery.displayTopNPopulatedCountriesInRegion(countries5, "Western Africa", 5);
-//
+           List<Country> countries4 = countryQuery.getTopNPopulatedCountriesInContinent(app.con, "Asia", 5);
+           countryQuery.displayTopNPopulatedCountriesInContinent(countries4, "Asia", 5);
+
+           List<Country> countries5 = countryQuery.getTopNPopulatedCountriesInRegion(app.con, "Western Africa", 5);
+            countryQuery.displayTopNPopulatedCountriesInRegion(countries5, "Western Africa", 5);
+
 //            // Initialize and use cityQuery class
             cityQuery cityQuery = new cityQuery();
 
