@@ -185,7 +185,6 @@ public class countryQuery {
         }
 
     }
-
     // Method to retrieve the top N populated countries in a specific continent, including capital names
     public List<Country> getTopNPopulatedCountriesInContinent(Connection con, String continent, int N) throws SQLException {
         List<Country> countries = new ArrayList<>(); // List to store the result
@@ -253,7 +252,6 @@ public class countryQuery {
             countries.add(new Country(code, name, continent, region, capital, population));
         }
         rs.close();
-
         return countries;  // Return the list of top N populated countries in the region
     }
 
@@ -269,5 +267,6 @@ public class countryQuery {
         }
 
     }
+
 
 }

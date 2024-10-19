@@ -96,7 +96,8 @@ class AppUnitTest {
 
         when(mockPopulationQuery.getPopulationDataByContinent(mockConnection)).thenReturn(mockPopulations);
 
-        // Call the method under test
+
+// Call the method under test
         List<Population> populations = mockPopulationQuery.getPopulationDataByContinent(mockConnection);
         mockPopulationQuery.displayPopulationDataByContinent(populations);
 
