@@ -1,29 +1,28 @@
 package com.napier.sem;
 
 import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.*;
 
-public class CapitalTest {
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
-    @Test
-    public void testCapitalConstructorAndGetters() {
-        // Create a new Capital object using the constructor
-        Capital capital = new Capital("Berlin", "Germany", 3748148);
-
-        // Test the constructor and getters
-        assertEquals("Berlin", capital.getName());
-        assertEquals("Germany", capital.getCountry());
-        assertEquals(3748148, capital.getPopulation());
-    }
+class CapitalTest {
 
     @Test
-    public void testCapitalWithDifferentValues() {
-        // Create another Capital object with different values
-        Capital capital = new Capital("Canberra", "Australia", 462000);
+    void testCapitalConstructorAndGetters() {
+        // Arrange: Create a new Capital object
+        String name = "Washington DC";
+        String country = "USA";
+        long population = 705749;  // Use long for consistency with the class definition
 
-        // Test the constructor and getters
-        assertEquals("Canberra", capital.getName());
-        assertEquals("Australia", capital.getCountry());
-        assertEquals(462000, capital.getPopulation());
+        Capital capital = new Capital(name, country, (int) population); // Cast to int for constructor
+
+        // Act: Retrieve the values using getters
+        String actualName = capital.getName();
+        String actualCountry = capital.getCountry();
+        long actualPopulation = capital.getPopulation();
+
+        // Assert: Verify that the values are as expected
+        assertEquals(name, actualName, "Capital name should match");
+        assertEquals(country, actualCountry, "Capital country should match");
+        assertEquals(population, actualPopulation, "Capital population should match");
     }
 }
