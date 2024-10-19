@@ -110,19 +110,19 @@ public class App {
             List<City> resultTopNWorldCities = cityQuery.getTopNPopulatedCitiesInWorld(app.con, 10);
             cityQuery.displayTopNPopulatedCitiesInWorld(resultTopNWorldCities, 10);
 
-//            List<City> resultTopNContinentCities = cityQuery.getTopNPopulatedCitiesInContinent(app.con, "Asia", 5);
-//            cityQuery.displayTopNPopulatedCitiesInContinent(resultTopNContinentCities, "Asia", 5);
-//
-//            List<City> resultTopNRegionCities = cityQuery.getTopNPopulatedCitiesInRegion(app.con, "Eastern Asia", 5);
-//            cityQuery.displayTopNPopulatedCitiesInRegion(resultTopNRegionCities, "Eastern Asia", 5);
-//
-//            List<City> resultTopNCountryCities = cityQuery.getTopNPopulatedCitiesInCountry(app.con, "China", 5);
-//            cityQuery.displayTopNPopulatedCitiesInCountry(resultTopNCountryCities, "China", 5);
-//
-//            List<City> resultTopNDistrictCities = cityQuery.getTopNPopulatedCitiesInDistrict(app.con, "Shandong", 5);
-//            cityQuery.displayTopNPopulatedCitiesInDistrict(resultTopNDistrictCities, "Shandong", 5);
-//
-//            // Initialize and use capitalQuery class
+            List<City> resultTopNContinentCities = cityQuery.getTopNPopulatedCitiesInContinent(app.con, "Asia", 5);
+            cityQuery.displayTopNPopulatedCitiesInContinent(resultTopNContinentCities, "Asia", 5);
+
+            List<City> resultTopNRegionCities = cityQuery.getTopNPopulatedCitiesInRegion(app.con, "Eastern Asia", 5);
+            cityQuery.displayTopNPopulatedCitiesInRegion(resultTopNRegionCities, "Eastern Asia", 5);
+
+            List<City> resultTopNCountryCities = cityQuery.getTopNPopulatedCitiesInCountry(app.con, "China", 5);
+            cityQuery.displayTopNPopulatedCitiesInCountry(resultTopNCountryCities, "China", 5);
+
+            List<City> resultTopNDistrictCities = cityQuery.getTopNPopulatedCitiesInDistrict(app.con, "Shandong", 5);
+            cityQuery.displayTopNPopulatedCitiesInDistrict(resultTopNDistrictCities, "Shandong", 5);
+
+            // Initialize and use capitalQuery class
             capitalQuery capitalQuery = new capitalQuery();
 
             List<Capital> capitals = capitalQuery.getAllCapitalCitiesOrderedByPopulation(app.con);

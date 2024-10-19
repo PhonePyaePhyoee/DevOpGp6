@@ -292,5 +292,153 @@ public class cityQuery {
 
         return cities;
     }
+    public void displayTopNPopulatedCitiesInContinent(List<City> cities,String continent, int N) {
+        // Default number of top cities
+        if (cities == null || cities.isEmpty()) {
+            System.out.println("No Cities found");
+            return;
+        }
+        System.out.println("\nNo.13 Top " + N + " Cities in " + continent + " by Population:");
+        System.out.println(String.format(" %-40s | %-40s | %-25s | %-15s", "City Name", "Country Name", "District", "Population"));
+        System.out.println("-----------------------------------------------------------------------------------------------------------------------------");
 
+        for (City city : cities) {
+            System.out.println(String.format("%-40s | %-40s | %-25s | %,15d", city.getName(), city.getCountry(), city.getDistrict(), city.getPopulation()));
+        }
+    }
+
+    public List<City> getTopNPopulatedCitiesInRegion(Connection con, String region, int N) throws SQLException {
+        // Set default values for region and N
+
+        List<City> cities = new ArrayList<>(); // List to store the result
+
+        Statement stmt = con.createStatement();
+        String query = "SELECT city.ID, city.Name, country.Name AS CountryName, city.District, city.Population " +
+                "FROM city " +
+                "JOIN country ON city.CountryCode = country.Code " +
+                "WHERE country.Region = '" + region + "' " + // Filter by default region
+                "ORDER BY city.Population DESC " + // Order by population from largest to smallest
+                "LIMIT " + N;  // Limit the result to default N cities
+        ResultSet rs = stmt.executeQuery(query);
+
+
+        NumberFormat numberFormat = NumberFormat.getInstance();
+        while (rs.next()) {
+            int cityID = rs.getInt("ID");
+            String cityName = rs.getString("Name");
+            String countryName = rs.getString("CountryName");
+            String district = rs.getString("District");
+            int population = rs.getInt("Population");
+            String populationFormatted = numberFormat.format(population); // Format population
+            cities.add(new City(cityName, countryName, district, population));
+
+        }
+        rs.close();
+
+        return cities;
+    }
+
+    public void displayTopNPopulatedCitiesInRegion(List<City> cities,String region, int N) {
+        // Default number of top cities
+        if (cities == null || cities.isEmpty()) {
+            System.out.println("No Cities found");
+            return;
+        }
+        System.out.println("\nNo. 14 Top " + N + " Populated Cities in " + region + " by Population:");
+        System.out.println(String.format(" %-40s | %-40s | %-25s | %-15s", "City Name", "Country Name", "District", "Population"));
+        System.out.println("-----------------------------------------------------------------------------------------------------------------------------");
+
+        for (City city : cities) {
+            System.out.println(String.format("%-40s | %-40s | %-25s | %,15d", city.getName(), city.getCountry(), city.getDistrict(), city.getPopulation()));
+        }
+    }
+    // Method to retrieve the top N populated cities in a country with default values
+    public List<City> getTopNPopulatedCitiesInCountry(Connection con,String country,int N) throws SQLException {
+        // Set default values for country and N
+
+
+        List<City> cities = new ArrayList<>(); // List to store the result
+
+        Statement stmt = con.createStatement();
+        String query = "SELECT city.ID, city.Name, country.Name AS CountryName, city.District, city.Population " +
+                "FROM city " +
+                "JOIN country ON city.CountryCode = country.Code " +
+                "WHERE country.Name = '" + country + "' " + // Filter by default country
+                "ORDER BY city.Population DESC " + // Order by population from largest to smallest
+                "LIMIT " + N;  // Limit the result to default N cities
+        ResultSet rs = stmt.executeQuery(query);
+        NumberFormat numberFormat = NumberFormat.getInstance();
+        while (rs.next()) {
+            int cityID = rs.getInt("ID");
+            String cityName = rs.getString("Name");
+            String countryName = rs.getString("CountryName");
+            String district = rs.getString("District");
+            int population = rs.getInt("Population");
+            String populationFormatted = numberFormat.format(population); // Format population
+            cities.add(new City(cityName, countryName, district, population));
+        }
+        rs.close();
+
+        return cities;
+    }
+    public void displayTopNPopulatedCitiesInCountry(List<City> cities,String country, int N) {
+        // Default number of top cities
+        if (cities == null || cities.isEmpty()) {
+            System.out.println("No Cities found");
+            return;
+        }
+        System.out.println("\nNo. 15 Top " + N + " Populated Cities in " + country + " by Population:");
+        System.out.println(String.format("%-40s | %-40s | %-25s | %-15s","City Name", "Country Name", "District", "Population"));
+        System.out.println("-----------------------------------------------------------------------------------------------------------------------------");
+
+        for (City city : cities) {
+            System.out.println(String.format("%-40s | %-40s | %-25s | %,15d", city.getName(), city.getCountry(), city.getDistrict(), city.getPopulation()));
+        }
+    }
+    public List<City> getTopNPopulatedCitiesInDistrict(Connection con,String district, int N) throws SQLException {
+
+
+        List<City> cities = new ArrayList<>(); // List to store the result
+
+        Statement stmt = con.createStatement();
+        String query = "SELECT city.ID, city.Name, country.Name AS CountryName, city.District, city.Population " +
+                "FROM city " +
+                "JOIN country ON city.CountryCode = country.Code " +
+                "WHERE city.District = '" + district + "' " + // Filter by default district
+                "ORDER BY city.Population DESC " + // Order by population from largest to smallest
+                "LIMIT " + N;  // Limit the result to default N cities
+        ResultSet rs = stmt.executeQuery(query);
+
+
+        NumberFormat numberFormat = NumberFormat.getInstance();
+        while (rs.next()) {
+            int cityID = rs.getInt("ID");
+            String cityName = rs.getString("Name");
+            String countryName = rs.getString("CountryName");
+            district = rs.getString("District");
+            int population = rs.getInt("Population");
+            String populationFormatted = numberFormat.format(population); // Format population
+
+            cities.add(new City(cityName, countryName, district, population));
+        }
+        rs.close();
+
+        return cities;
+    }
+    public void displayTopNPopulatedCitiesInDistrict(List<City> cities,String district, int N) {
+        // Default number of top cities
+        if (cities == null || cities.isEmpty()) {
+            System.out.println("No Cities found");
+            return;
+        }
+        System.out.println("\nNo. 16 Top " + N + " Populated Cities in " + district + " by Population:");
+        System.out.println(String.format("%-40s | %-40s | %-25s | %-15s","City Name", "Country Name", "District", "Population"));
+        System.out.println("-----------------------------------------------------------------------------------------------------------------------------");
+
+        for (City city : cities) {
+            System.out.println(String.format("%-40s | %-40s | %-25s | %,15d", city.getName(), city.getCountry(), city.getDistrict(), city.getPopulation()));
+        }
+    }
 }
+
+
