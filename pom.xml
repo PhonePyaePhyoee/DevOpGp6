@@ -8,19 +8,26 @@
     <artifactId>DevOpsnew</artifactId>
     <version>0.1.0.1</version>
 
-<!--    <dependencies>-->
-<!--        <dependency>-->
-<!--            <groupId>org.mongodb</groupId>-->
-<!--            <artifactId>mongodb-driver</artifactId>-->
-<!--            <version>3.6.4</version>-->
-<!--        </dependency>-->
-<!--    </dependencies>-->
     <dependencies>
         <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
             <version>8.0.18</version>
         </dependency>
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-api</artifactId>
+            <version>5.1.0</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.mockito</groupId>
+            <artifactId>mockito-core</artifactId>
+            <version>5.3.1</version> <!-- Check for the latest version -->
+            <scope>test</scope>
+        </dependency>
+
+
     </dependencies>
 
     <properties>
@@ -36,14 +43,10 @@
                 <artifactId>maven-assembly-plugin</artifactId>
                 <version>3.3.0</version>
                 <configuration>
-                    <archive>
-                        <manifest>
-                            <mainClass>group6.com.napier.devops.App</mainClass>
-                        </manifest>
-                    </archive>
-                    <descriptorRefs>
-                        <descriptorRef>jar-with-dependencies</descriptorRef>
-                    </descriptorRefs>
+                    <descriptors>
+                        <descriptor>src/assembly/assembly.xml</descriptor>
+                    </descriptors>
+                    <finalName>${project.artifactId}-${project.version}</finalName>
                 </configuration>
                 <executions>
                     <execution>

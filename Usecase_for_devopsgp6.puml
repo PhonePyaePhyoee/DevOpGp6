@@ -1,0 +1,75 @@
+@startuml
+   left to right direction
+
+actor User as "User"
+
+rectangle "World Population" {
+   usecase UC1 as "show all countries in the world by largest population to smallest"
+   usecase UC2 as "show all countries in a continent by largest population to smallest"
+   usecase UC3 as "show all countries in a region by largest population to smallest"
+   usecase UC4 as "show top populated countries in the world by user provided"
+   usecase UC5 as "show top populated countries in a continent by user provided"
+   usecase UC6 as "show top populated countries in a region by user provided"
+   usecase UC7 as "show all cities in the world by largest population to smallest"
+   usecase UC8 as "show all cities in a continent by largest population to smallest"
+   usecase UC9 as "show all cities in a region by largest population to smallest"
+   usecase UC10 as "show all cities in a country by largest population to smallest"
+   usecase UC11 as "show all cities in a district by largest population to smallest"
+   usecase UC12 as "show top populated cities in the world by the user provided"
+   usecase UC13 as "show top populated cities in a continent by the user provided"
+   usecase UC14 as "show top populated cities in a region by the user provided"
+   usecase UC15 as "show top populated cities in a country by the user provided"
+   usecase UC16 as "show top populated cities in a district by the user provided "
+   usecase UC17 as "show all the capital cities in the world by largest population to smallest"
+   usecase UC18 as "show all the capital cities in a continent by largest population to smallest"
+   usecase UC19 as "show all the capital cities in a region by largest population to smallest"
+   usecase UC20 as "show top populated cities in the world by the user provided"
+   usecase UC21 as "show top populated cities in a continent by the user provided"
+   usecase UC22 as "show top populated cities in a region by the user provided"
+   usecase UC23 as "show the population of people, living or not living in the cities in each continent"
+   usecase UC24 as "show the population of people, living or not living in the cities in each region"
+   usecase UC25 as "show the population of people, living or not living in the cities in each country"
+   usecase UC26 as "show the population of the world"
+   usecase UC27 as "show the population of a continent"
+   usecase UC28 as "show the population of a region"
+   usecase UC29 as "show the population of a country"
+   usecase UC30 as "show the population of a district"
+   usecase UC31 as "show the population of a city"
+   usecase UC32 as "show all of the people who speak Chinese, English, Hindi, Spanish, Arabic from greatest to smallest in the world"
+
+   User -UC1
+   User - UC2
+   User - UC3
+   User - UC4
+   User - UC5
+   User - UC6
+   User - UC7
+   User - UC8
+   User - UC9
+   User - UC10
+   User - UC11
+   User - UC12
+   User - UC13
+   User - UC14
+   User - UC15
+   User - UC16
+   User - UC17
+   User - UC18
+   User - UC19
+   User - UC20
+   User - UC21
+   User - UC22
+   User - UC23
+   User - UC24
+   User - UC25
+   User - UC26
+   User - UC27
+   User - UC28
+   User - UC29
+   User - UC30
+   User - UC31
+   User - UC32
+
+   }
+
+@enduml
