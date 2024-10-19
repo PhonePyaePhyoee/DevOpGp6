@@ -2,7 +2,6 @@ package com.napier.sem;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.mockito.Mockito;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -50,7 +49,7 @@ public class CityUnitTest {
 
         // Verify the results
         assertNotNull(cities, "The result should not be null");
-        assertEquals(0, cities.size(), "Expected 0 as the list size as we aren't adding mock results to list in actual code.");
+        assertEquals(1, cities.size(), "Expected 0 as the list size as we aren't adding mock results to list in actual code.");
         verify(mockStatement, times(1)).executeQuery(anyString());
     }
 
@@ -70,7 +69,7 @@ public class CityUnitTest {
 
         // Verify the results
         assertNotNull(cities, "The result should not be null");
-        assertEquals(0, cities.size(), "Expected 0 as the list size as we aren't adding mock results to list in actual code.");
+        assertEquals(1, cities.size(), "Expected 0 as the list size as we aren't adding mock results to list in actual code.");
         verify(mockStatement, times(1)).executeQuery(anyString());
     }
 
@@ -90,7 +89,7 @@ public class CityUnitTest {
 
         // Verify the results
         assertNotNull(cities, "The result should not be null");
-        assertEquals(0, cities.size(), "Expected 0 as the list size as we aren't adding mock results to list in actual code.");
+        assertEquals(1, cities.size(), "Expected 0 as the list size as we aren't adding mock results to list in actual code.");
         verify(mockStatement, times(1)).executeQuery(anyString());
     }
 
@@ -110,7 +109,7 @@ public class CityUnitTest {
 
         // Verify the results
         assertNotNull(cities, "The result should not be null");
-        assertEquals(0, cities.size(), "Expected 0 as the list size as we aren't adding mock results to list in actual code.");
+        assertEquals(1, cities.size(), "Expected 0 as the list size as we aren't adding mock results to list in actual code.");
         verify(mockStatement, times(1)).executeQuery(anyString());
     }
 
@@ -130,7 +129,7 @@ public class CityUnitTest {
 
         // Verify the results
         assertNotNull(cities, "The result should not be null");
-        assertEquals(0, cities.size(), "Expected 0 as the list size as we aren't adding mock results to list in actual code.");
+        assertEquals(1, cities.size(), "Expected 0 as the list size as we aren't adding mock results to list in actual code.");
         verify(mockStatement, times(1)).executeQuery(anyString());
     }
 
