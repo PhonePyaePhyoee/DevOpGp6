@@ -136,12 +136,12 @@ public class App {
 
             List<Capital> topCapitalsInWorld = capitalQuery.getTopNPopulatedCapitalCitiesInWorld(app.con, 10);
             capitalQuery.displayTopNPopulatedCapitalCitiesInWorld(topCapitalsInWorld, 10);
-//
-//            List<Capital> topCapitalsInContinent = capitalQuery.getTopNPopulatedCapitalCitiesInContinent(app.con, "Asia", 10);
-//            capitalQuery.displayTopNPopulatedCapitalCitiesInContinent(topCapitalsInContinent, "Asia", 10);
-//
-//            List<Capital> topCapitalsInRegion = capitalQuery.getTopNPopulatedCapitalCitiesInRegion(app.con, "Eastern Asia", 10);
-//            capitalQuery.displayTopNPopulatedCapitalCitiesInRegion(topCapitalsInRegion, "Eastern Asia", 10);
+
+            List<Capital> topCapitalsInContinent = capitalQuery.getTopNPopulatedCapitalCitiesInContinent(app.con, "Asia", 10);
+            capitalQuery.displayTopNPopulatedCapitalCitiesInContinent(topCapitalsInContinent, "Asia", 10);
+
+            List<Capital> topCapitalsInRegion = capitalQuery.getTopNPopulatedCapitalCitiesInRegion(app.con, "Eastern Asia", 10);
+            capitalQuery.displayTopNPopulatedCapitalCitiesInRegion(topCapitalsInRegion, "Eastern Asia", 10);
 
             // Initialize and use populationQuery class
             populationQuery populationQuery = new populationQuery();
