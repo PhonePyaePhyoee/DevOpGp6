@@ -35,7 +35,7 @@ Additional efforts included:
 
 
 ## **Evidence of 32 City, Capital, Population queries** 🌏
-| **ID** | **Description**                                                                                              | **Met** | **Screenshot**                               |
+| **ID** | **Description**                                                                                              | **Meet** | **Screenshot**                               |
 |-------|--------------------------------------------------------------------------------------------------------------|--------|---------------------------------------------|
 | 1     | All the countries in the world organized by largest population to smallest.                                   | Yes    | ![](./evidancescreenshots/1.png)            |
 | 2     | All the countries in a continent organized by largest population to smallest.                                 | Yes    | ![](./evidancescreenshots/2.png)            |
