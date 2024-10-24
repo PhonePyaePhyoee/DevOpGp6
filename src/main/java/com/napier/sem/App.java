@@ -62,7 +62,7 @@ public class App {
 
         // Check if connection parameters are passed, else use defaults
         if (args.length < 2) {
-            app.connect("localhost:33060", 30000);
+            app.connect("localhost:33061", 30000);
         } else {
             app.connect(args[0], Integer.parseInt(args[1]));
         }
